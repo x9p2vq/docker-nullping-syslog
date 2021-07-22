@@ -1,0 +1,28 @@
+version: "3"
+services:
+  syslog-ng:
+    build: ./build.syslog-ng/.
+    container_name: syslog-ng
+    image: nullping/syslog-ng:latest
+    ports:
+      - "514:514/tcp"
+      - "514:514/udp"
+      - "601:601/tcp"
+      - "6514:6514/tcp"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/data/ssl-certs/cert.pem:/runtime/syslog-ng/ssl/cert.pem:ro"
+      - "/data/ssl-certs/privkey.pem:/runtime/syslog-ng/ssl/privkey.pem:ro"
+      - "./runtime:/runtime"
+    restart: unless-stopped
+    healthcheck:
+      disable: 'true'
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+      - subnet:  172.100.0.1/16
