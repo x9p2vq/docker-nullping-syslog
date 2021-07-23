@@ -5,10 +5,9 @@ services:
     container_name: syslog-ng
     image: nullping/syslog-ng:latest
     ports:
-      - "514:514/tcp"
-      - "514:514/udp"
-      - "601:601/tcp"
-      - "6514:6514/tcp"
+      - "0.0.0.0:514:514/udp"
+      - "0.0.0.0:601:601"
+      - "0.0.0.0:6514:6514"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/data/ssl-certs/cert.pem:/runtime/syslog-ng/ssl/cert.pem:ro"
