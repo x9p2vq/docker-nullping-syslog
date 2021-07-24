@@ -1,17 +1,17 @@
 version: "3"
 services:
-  syslog-ng:
-    build: ./build.syslog-ng/.
-    container_name: syslog-ng
-    image: nullping/syslog-ng:latest
+  syslog:
+    build: ./syslog/.
+    container_name: syslog
+    image: nullping/syslog:latest
     ports:
       - "0.0.0.0:514:514/udp"
       - "0.0.0.0:601:601"
       - "0.0.0.0:6514:6514"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - "/data/ssl-certs/cert.pem:/runtime/syslog-ng/ssl/cert.pem:ro"
-      - "/data/ssl-certs/privkey.pem:/runtime/syslog-ng/ssl/privkey.pem:ro"
+      - "/data/ssl-certs/cert.pem:/runtime/syslog/ssl/cert.pem:ro"
+      - "/data/ssl-certs/privkey.pem:/runtime/syslog/ssl/privkey.pem:ro"
       - "./runtime:/runtime"
     restart: unless-stopped
     healthcheck:

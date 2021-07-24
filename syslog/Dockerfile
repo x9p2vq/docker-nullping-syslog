@@ -1,6 +1,6 @@
 FROM alpine:latest
 LABEL maintainer="Jason Mitchell <jason@nullping.net>"
-LABEL description="syslog-ng server"
+LABEL description="syslog server"
 
 # create necessary user and group first
 RUN addgroup -g 10001 -S syslog
